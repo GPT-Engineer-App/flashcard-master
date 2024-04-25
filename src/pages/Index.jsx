@@ -14,6 +14,7 @@ const Index = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [currentCard, setCurrentCard] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [score, setScore] = useState(0);
 
   const nextCard = () => {
     setShowAnswer(false);
@@ -26,6 +27,15 @@ const Index = () => {
   };
 
   const toggleAnswer = () => {
+    if (!showAnswer) {
+      const userAnswer = prompt("What's your answer?");
+      if (userAnswer.toLowerCase() === flashcards[currentCard].answer.toLowerCase()) {
+        setScore((prevScore) => prevScore + 1);
+        alert("Correct!");
+      } else {
+        alert("Wrong! The correct answer is: " + flashcards[currentCard].answer);
+      }
+    }
     setShowAnswer(!showAnswer);
   };
 
@@ -48,6 +58,9 @@ const Index = () => {
               {flashcards[currentCard].answer}
             </Text>
           )}
+          <Text fontSize="lg" mt={4}>
+            Score: {score}
+          </Text>
           <Button mt={4} colorScheme="blue" onClick={toggleAnswer}>
             {showAnswer ? "Hide Answer" : "Show Answer"}
           </Button>
