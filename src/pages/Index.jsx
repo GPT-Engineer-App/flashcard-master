@@ -2,16 +2,17 @@ import { useState } from "react";
 import { Box, Button, Flex, Text, VStack, IconButton, useColorModeValue, Heading } from "@chakra-ui/react";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
-const flashcards = [
+const defaultFlashcards = [
   { question: "What is the capital of France?", answer: "Paris" },
   { question: "What is 2 + 2?", answer: "4" },
   { question: "What is the largest ocean on Earth?", answer: "Pacific Ocean" },
   { question: "What year did the Titanic sink?", answer: "1912" },
   { question: "Who wrote 'Hamlet'?", answer: "William Shakespeare" },
 ];
+const storedFlashcards = JSON.parse(localStorage.getItem("flashcards"));
+const flashcards = storedFlashcards || defaultFlashcards;
 
 const Index = () => {
-  
   const [currentCard, setCurrentCard] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [score, setScore] = useState(0);
