@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Box, Button, Flex, Text, useColorMode, VStack, IconButton, useColorModeValue, Heading } from "@chakra-ui/react";
-import { FaSun, FaMoon, FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import { Box, Button, Flex, Text, VStack, IconButton, useColorModeValue, Heading } from "@chakra-ui/react";
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
 const flashcards = [
   { question: "What is the capital of France?", answer: "Paris" },
@@ -11,7 +11,7 @@ const flashcards = [
 ];
 
 const Index = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
+  
   const [currentCard, setCurrentCard] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [score, setScore] = useState(0);
@@ -45,7 +45,6 @@ const Index = () => {
   return (
     <Flex direction="column" align="center" justify="center" minH="100vh" p={4} bg={bgColor}>
       <VStack spacing={8}>
-        <IconButton aria-label="Toggle color mode" icon={colorMode === "light" ? <FaMoon /> : <FaSun />} onClick={toggleColorMode} isRound />
         <Box p={5} shadow="md" borderWidth="1px" borderRadius="lg" bg={cardColor} w="sm">
           <Heading mb={4}>
             Flashcard {currentCard + 1} of {flashcards.length}
