@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, Flex, Text, VStack, IconButton, useColorModeValue, Heading } from "@chakra-ui/react";
+import { Box, Button, Flex, Text, VStack, IconButton, useColorModeValue, Heading, Input } from "@chakra-ui/react";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
 const defaultFlashcards = [
@@ -27,9 +27,10 @@ const Index = () => {
     setCurrentCard((prevCard) => (prevCard - 1 + flashcards.length) % flashcards.length);
   };
 
+  const [userAnswer, setUserAnswer] = useState("");
+
   const toggleAnswer = () => {
     if (!showAnswer) {
-      const userAnswer = prompt("What's your answer?");
       if (userAnswer.toLowerCase() === flashcards[currentCard].answer.toLowerCase()) {
         setScore((prevScore) => prevScore + 1);
         alert("Correct!");
@@ -61,8 +62,9 @@ const Index = () => {
           <Text fontSize="lg" mt={4}>
             Score: {score}
           </Text>
+          <Input placeholder="Type your answer here" value={userAnswer} onChange={(e) => setUserAnswer(e.target.value)} mt={2} />
           <Button mt={4} colorScheme="blue" onClick={toggleAnswer}>
-            {showAnswer ? "Hide Answer" : "Show Answer"}
+            {showAnswer ? "Hide Answer" : "Check Answer"}
           </Button>
         </Box>
         <Flex>
